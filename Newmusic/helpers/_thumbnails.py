@@ -1,5 +1,3 @@
-#Khithlainhtet
-
 import os
 import aiohttp
 import textwrap
@@ -7,10 +5,10 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 from Newmusic import config
 from Newmusic.helpers import Track
 
-BASE_DIR = os.path.dirname(os.path.abspath(file))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Thumbnail:
-    def init(self):
+    def __init__(self):
         self.size = (1280, 720)
         self.session: aiohttp.ClientSession | None = None
         
@@ -78,7 +76,7 @@ class Thumbnail:
 
             
             bg = ImageOps.fit(raw_cover, self.size, method=Image.Resampling.LANCZOS)
-            bg = bg.filter(ImageFilter.GaussianBlur(30))
+            bg = bg.filter(ImageFilter.GaussianBlur(50))
             bg = ImageEnhance.Brightness(bg).enhance(0.7)
             draw = ImageDraw.Draw(bg)
 
@@ -97,7 +95,8 @@ class Thumbnail:
             
             draw.rounded_rectangle((cx-3, cy-3, cx+c_size+3, cy+c_size+3), 28, outline=(255, 200, 50), width=4)
             bg.paste(cover_img, (cx, cy), cover_img)
-            # စာသားများ (Details & Now Playing)
+
+            
             tx, ty = cx + c_size + 40, cy + 20
             details = "If you want to create your own music bot\nplease contact the developer mentioned in\nthe credit below."
             draw.text((tx, ty), details, font=self.font_time, fill=(255, 255, 0), spacing=8)
