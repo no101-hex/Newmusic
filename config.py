@@ -28,8 +28,8 @@ class Config:
         self.SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/myanmarbot_music")
         self.SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/myanmar_music_Bot2027")
         
-        self.AUTO_LEAVE: bool = True
-        self.AUTO_END: bool = True
+        self.AUTO_LEAVE: bool = False
+        self.AUTO_END: bool = False
     
         self.THUMB_GEN: bool = getenv("THUMB_GEN", "True").lower() == "true"
         self.VIDEO_PLAY: bool = getenv("VIDEO_PLAY", "True").lower() == "true"
